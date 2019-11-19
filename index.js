@@ -1,7 +1,6 @@
 const app = require('express')()
 var passport = require('passport')
 var BasicStrategy = require('passport-http').BasicStrategy;  // Want to use Basic Authentication Strategy
-var path = require('path')
 
 // Other middleware
 
@@ -23,9 +22,10 @@ app.get('/',
   // Look into express app.all() so you can protect all endpoints
 
   app.get('/albums',
-  passport.authenticate('basic', { session: false }),
-  function(req, res) {
-    res.sendFile('/albums.json', { root: __dirname });
-  });
+    passport.authenticate('basic', { session: false }),
+    function(req, res) {
+      res.sendFile('/albums.json', { root: __dirname });
+    }
+  );
 
 app.listen( 3000, "0.0.0.0")
